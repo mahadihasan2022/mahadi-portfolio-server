@@ -21,13 +21,23 @@ async function run() {
         app.get('/projects', async (req, res) => {
             const cursor = projectsCollection.find({});
             const projects = await cursor.toArray();
-            res.json(projects)
+            if(projects){
+                res.json(projects)
+            }
+            if(!projects){
+                res.status(404)
+            }
         })
 
         app.get('/blogs', async (req, res) => {
             const cursor = blogsCollection.find({});
             const blogs = await cursor.toArray();
-            res.json(blogs)
+            if(blogs){
+                res.json(blogs)
+            }
+            if(!blogs){
+                res.status(404)
+            }
         })
 
         app.post('/project', async (req, res) => {
